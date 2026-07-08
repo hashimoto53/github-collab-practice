@@ -21,9 +21,10 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
         ]);
+
         $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
         $user->password = Hash::make($validated['password']);
         $user->save();
 
